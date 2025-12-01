@@ -1,5 +1,5 @@
 import { supabase } from "../services/supabase/client";
-import { AuthContext } from "../utils/AuthContext";
+import { AuthContext } from "./AuthContext";
 
 export function AuthProvider({ children }) {
   const user = supabase.auth.getUser();
