@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "../pages/dashboard/Login";
-import DashboardSelect from "../pages/dashboard/DashboardSelect";
+import Login from "../pages/Login";
+import DashboardSelect from "../pages/DashboardSelect";
 
 export default function AppRoutes() {
   return (

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bgImage from "../../assets/images/backgrounds/login-bg.png";
-import { supabase } from "../../services/supabase/client";
+import bgImage from "../assets/images/backgrounds/login-bg.png";
+import { supabase } from "../services/supabase/client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Loader } from "lucide-react";
-import Input from "../../components/ui/Input";
-import Label from "../../components/ui/Label";
-import Button from "../../components/ui/Button";
-import Logo from "../../components/ui/Logo";
+import Input from "../components/ui/Input";
+import Label from "../components/ui/Label";
+import Button from "../components/ui/Button";
+import Logo from "../components/ui/Logo";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,11 +15,9 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     setLoading(true);
-    setError("");
 
     if (!email || !password) {
       toast.error("Email and password are required.");
@@ -27,7 +25,7 @@ export default function Login() {
       return;
     }
 
-    const {_,  error: authError } = await supabase.auth.signInWithPassword({
+    const { _, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -54,7 +52,6 @@ export default function Login() {
         <div className="bg-transparent flex flex-col justify-center items-center p-6" style={{ backgroundImage: `url(${bgImage})`, backgroundOrigin: 'cover', backgroundPosition: 'center', backgroundSize: 'cover', width: '100%', height: '100%' }}>
           <div className="max-sm:w-full w-[340px]">
             <h1 className="text-white text-[52px] font-bold mb-6">Welcome Back</h1>
-            {error && <p className="text-white p-2 mb-4 rounded">{error}</p>}
             <Label>Email</Label>
             <Input
               className="mb-4"
@@ -107,7 +104,8 @@ export default function Login() {
         </div>
         <div className="text-[13px] font-medium">
           <p className="text-xs">© All Rights Reserved 2025</p>
-          <p>Master-Fees ltd.</p></div>
+          <p>Master-Fees ltd.</p>
+        </div>
       </div>
     </div>
   );
