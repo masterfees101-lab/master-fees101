@@ -1,6 +1,6 @@
 export default function Logo({ className }) {
     return (
-        <div className={`absolute px-6 top-0 py-2 w-full ${className}`}>
+        <div className={`absolute top-0 left-0 ${className}`}>
             {/* Inline SVG (editable by Tailwind & CSS) */}
             <svg width="223" height="49" viewBox="0 0 223 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_1128_10247)">

@@ -1,12 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import DashboardSelect from "../pages/DashboardSelect";
+import Dashboard from "../pages/Dashboard";
+import PageNotFound from "../pages/PageNotFound";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/dashboards" element={<DashboardSelect />} />
+      <Route path="/dashboardSelect" element={<DashboardSelect />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      {/* Unknown routes */}
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }

@@ -6,7 +6,7 @@ const dashboardCContents = [
       icon: campus,
       title: "Master-Fees",
       subtitle: "Accounting Software",
-      route: "/fees",
+      route: "/dashboard",
       disabled: false,
     },
     {

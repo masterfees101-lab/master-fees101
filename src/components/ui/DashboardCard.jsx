@@ -21,7 +21,6 @@ export default function DashboardCard({ disabled, icon, title, subtitle, onClick
               className="w-20 h-20 inline-block"
             />
           </div>
-
           <div className="flex flex-col items-center justify-center h-full gap-2 mb-12 pb-16">
             <h3 className="text-2xl font-bold text-white">
               {title}

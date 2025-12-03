@@ -7,6 +7,8 @@ function App() {
     <>
       <AppRoutes />
       {/* Global toast notifications */}
+    {/* This allows the app to display toast messages for user feedback e.g  */}
+    {/* when a using enters a wrong password or email or any other errors thrown by supabase  noted*/}
       <Toaster
         position="top-right"
         reverseOrder={false}

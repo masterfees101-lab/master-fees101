@@ -8,6 +8,7 @@ import Input from "../components/ui/Input";
 import Label from "../components/ui/Label";
 import Button from "../components/ui/Button";
 import Logo from "../components/ui/Logo";
+import Footer from "../components/ui/Footer";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -38,17 +39,16 @@ export default function Login() {
         toast.error(authError.message)
       }
     } else {
-      // Successful login - navigate to dashboards
-      navigate("/dashboards");
+      // Successful login - navigate to dashboardSelect
+      navigate("/dashboardSelect");
     }
-
     setLoading(false);
   };
 
   return (
     <div className="h-screen flex flex-row">
       <div className="max-md:w-full h-full w-1/2">
-        <Logo className="text-white" />
+        <Logo className="text-white px-6 py-2" />
         <div className="bg-transparent flex flex-col justify-center items-center p-6" style={{ backgroundImage: `url(${bgImage})`, backgroundOrigin: 'cover', backgroundPosition: 'center', backgroundSize: 'cover', width: '100%', height: '100%' }}>
           <div className="max-sm:w-full w-[340px]">
             <h1 className="text-white text-[52px] font-bold mb-6">Welcome Back</h1>
@@ -85,7 +85,8 @@ export default function Login() {
             <Button
               onClick={handleLogin}
               disabled={loading}
-              className="w-full bg-white text-(--primary-color)"
+              className="flex items-center justify-center font-semibold rounded-xl  
+        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed h-[47px] w-full bg-white text-(--primary-color)"
             >
               {loading ? <Loader /> : "Sign in"}
             </Button>
@@ -102,10 +103,7 @@ export default function Login() {
             </span>
           </p>
         </div>
-        <div className="text-[13px] font-medium">
-          <p className="text-xs">© All Rights Reserved 2025</p>
-          <p>Master-Fees ltd.</p>
-        </div>
+        <Footer />
       </div>
     </div>
   );
