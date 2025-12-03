@@ -1,10 +1,26 @@
+import {
+  DotIcon,
+  Expand,
+  ExpandIcon,
+  Settings,
+  Wallet2Icon,
+} from "lucide-react";
+import RevenueRecovery from "../../components/ui/RevenueRecovery";
+import DashboardHeading from "../../components/ui/DashboardHeading";
+import RevenueBreakdownCard from "../../components/ui/RevenueBreakdownCard";
+import UpdatesPanel from "../../components/ui/UpdatesPanel";
+
 export default function HomePage() {
-    return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Welcome to the Homepage</h1>
-            <p className="text-base text-gray-700">
-                This is the main dashboard where you can get an overview of your activities and access various features.
-            </p>
+  return (
+    <main className="bg-white p-7 h-screen rounded-md overflow-auto hover:overflow-auto ">
+      <DashboardHeading />
+      <div className="flex ">
+        <div className="p-6  w-full ">
+          <RevenueRecovery />
+          <RevenueBreakdownCard />
         </div>
-    );
+        <UpdatesPanel />
+      </div>
+    </main>
+  );
 }
