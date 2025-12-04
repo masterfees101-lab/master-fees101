@@ -7,9 +7,9 @@ import PageNotFound from "../pages/PageNotFound";
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* <Route path="/" element={<Login />} /> */}
-      {/* <Route path="/dashboardSelect" element={<DashboardSelect />} /> */}
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/dashboardSelect" element={<DashboardSelect />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       {/* Unknown routes */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
