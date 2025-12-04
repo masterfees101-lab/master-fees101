@@ -15,18 +15,38 @@ import tasks from "../assets/images/icons/menu/tasks.svg";
 import wallet from "../assets/images/icons/menu/wallet.svg";
 import integrations from "../assets/images/icons/menu/intergrations.svg";
 import support from "../assets/images/icons/menu/care.svg";
-import settings from "../assets/images/icons/menu/settings.svg";  
+import settings from "../assets/images/icons/menu/settings.svg";
 
 export const generalViews = [
   { key: "homepage", label: "Homepage", component: HomePage, icon: home },
-  { key: "transactions", label: "Transactions", component: Transactions, icon: transactions },
-  { key: "customers", label: "Customer Management", component: CustomerManagement, icon: customers },
+  {
+    key: "transactions",
+    label: "Transactions",
+    component: Transactions,
+    icon: transactions,
+  },
+  {
+    key: "customers",
+    label: "Customer Management",
+    component: CustomerManagement,
+    icon: customers,
+  },
   { key: "tasks", label: "Tasks", component: Tasks, icon: tasks },
   { key: "wallet", label: "Wallet", component: Wallet, icon: wallet },
 ];
 
 export const supportViews = [
-  { key: "integrations", label: "Integrations", component: Integrations, icon: integrations },
-  { key: "support", label: "Customer Support", component: CustomerSupport, icon: support },
+  {
+    key: "integrations",
+    label: "Integrations",
+    component: Integrations,
+    icon: integrations,
+  },
+  {
+    key: "support",
+    label: "Customer Support",
+    component: CustomerSupport,
+    icon: support,
+  },
   { key: "settings", label: "Settings", component: Settings, icon: settings },
 ];
