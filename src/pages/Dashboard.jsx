@@ -19,7 +19,7 @@ export default function Dashboard() {
     return (
         <div className="flex flex-row h-screen">
             <Aside handleViewSelection={setActiveView} />
-            <main className="flex-1 p-6 bg-gray-100 ">
+            <main className="flex-1 bg-gray-100 ">
                 {renderView()}
             </main>
         </div>
