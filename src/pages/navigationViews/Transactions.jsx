@@ -1,8 +1,11 @@
+import ReceivablesPanel from "../../components/ui/ReceivablesPanel";
+import DashboardHeading from "../../components/ui/DashboardHeading";
+
 export default function Transactions() {
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Transactions</h1>
-            <p>Welcome to the Transactions section. Here you can manage your transactions efficiently.</p>
-        </div>
-    )
+        <main className="bg-white p-7 h-screen rounded-md overflow-auto">
+            <DashboardHeading />
+            <ReceivablesPanel />
+        </main>
+    );
 }

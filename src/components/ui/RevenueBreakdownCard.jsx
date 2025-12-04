@@ -23,7 +23,7 @@ export default function RevenueBreakdownCard() {
 
         <div className="w-full h-7 bg-gray-200 rounded-full overflow-hidden mb-6">
           <div
-            className="h-full rounded-full bg-linear-to-r from-lime-400 to-lime-500 transition-all"
+            className="h-full rounded-full bg-linear-to-r from-(--lime-text) to-lime-500 transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -35,8 +35,8 @@ export default function RevenueBreakdownCard() {
           <span>Collected</span>
           <span className="text-right">ZMW {collected.toLocaleString()}</span>
 
-          <span className="font-semibold text-lime-400">Balance</span>
-          <span className="text-right font-semibold text-lime-400">
+          <span className="font-semibold text-(--lime-text)">Balance</span>
+          <span className="text-right font-semibold text-(--lime-text)">
             ZMW {balance.toLocaleString()}
           </span>
         </div>

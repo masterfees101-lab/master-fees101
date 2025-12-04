@@ -67,7 +67,7 @@ export default function UpdatesPanel() {
               typeStyles[update.type]
             }`}
           >
-            <div className="flex-shrink-0 mr-3 mt-1">
+            <div className="shrink-0 mr-3 mt-1">
               {update.type === "success" && (
                 <span className="">
                   {" "}
