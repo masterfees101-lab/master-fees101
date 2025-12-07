@@ -2,11 +2,22 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari&display=swap");
 
 @theme {
+  /* Brand Colors */
   --color-primary: #003630;
   --color-secondary: #ffffff;
   --color-lime-text: #95E36C;
   --color-lime-bg: #CFF2BD;
   --color-primary-text: #003630;
+
+  /* Used Grays Only */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
 }
 
 body {

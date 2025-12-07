@@ -55,7 +55,7 @@ export default function Login() {
             <Input
               id="email"
               type="email"
-              className="mb-4"
+              className="mb-4 p-3 rounded-xl bg-primary text-white border border-gray-100 focus:outline-none"
               placeholder="Enter your school email"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -63,7 +63,7 @@ export default function Login() {
             <div className="relative">
               <Input
                 id="password"
-                className="pr-12"
+                className="pr-12 p-3 rounded-xl bg-primary text-white border border-gray-100 focus:outline-none"
                 placeholder="Enter your password"
                 type={show ? "text" : "password"}
                 onChange={(e) => setPassword(e.target.value)}
