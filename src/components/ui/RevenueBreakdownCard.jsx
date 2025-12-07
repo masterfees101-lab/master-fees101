@@ -1,6 +1,8 @@
+import { DEFAULT_TOTAL_REVENUE, DEFAULT_COLLECTED_REVENUE } from "../../utils/constants";
+
 export default function RevenueBreakdownCard() {
-  const total = 1500000;
-  const collected = 757000;
+  const total = DEFAULT_TOTAL_REVENUE;
+  const collected = DEFAULT_COLLECTED_REVENUE;
   const balance = total - collected;
 
   const progress = (collected / total) * 100;
@@ -35,8 +37,8 @@ export default function RevenueBreakdownCard() {
           <span>Collected</span>
           <span className="text-right">ZMW {collected.toLocaleString()}</span>
 
-          <span className="font-semibold text-(--lime-text)">Balance</span>
-          <span className="text-right font-semibold text-(--lime-text)">
+          <span className="font-semibold text-lime-text">Balance</span>
+          <span className="text-right font-semibold text-lime-text">
             ZMW {balance.toLocaleString()}
           </span>
         </div>

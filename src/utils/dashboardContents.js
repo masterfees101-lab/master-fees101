@@ -1,7 +1,7 @@
-import campus from "../assets/images/icons/campus.png"; 
-import fees from "../assets/images/icons/master-fees.png";
+import campus from "../assets/logos/campus.png"; 
+import fees from "../assets/logos/master-fees.png";
 
-const dashboardCContents = [
+const dashboardContents = [
     {
       icon: campus,
       title: "Master-Fees",
@@ -26,4 +26,4 @@ const dashboardCContents = [
     },
   ];
 
-export default dashboardCContents;
+export default dashboardContents;

@@ -1,31 +1,32 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari&display=swap");
 
-/* src/index.css */
-:root {
-  --primary-color: #003630; /* Dark teal */
-  --secondary-color: #ffffff; /* White */
-  --lime-text: #95E36C; /* lime-400 for text */
-  --lime-bg: #CFF2BD; /* lime-200 for backgrounds */
+@theme {
+  --color-primary: #003630;
+  --color-secondary: #ffffff;
+  --color-lime-text: #95E36C;
+  --color-lime-bg: #CFF2BD;
+  --color-primary-text: #003630;
 }
+
 body {
   font-family: "IBM Plex Sans Devanagari", sans-serif;
 }
 
 /* Thin scrollbar */
 .thin-scrollbar::-webkit-scrollbar {
-  width: 1px; /* width of the scrollbar */
+  width: 1px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* track color */
+  background: transparent;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1; /* scrollbar thumb color (slate-300) */
-  border-radius: 9999px; /* fully rounded */
+  background-color: #cbd5e1;
+  border-radius: 9999px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8; /* darker on hover */
+  background-color: #94a3b8;
 }

@@ -17,7 +17,7 @@ export default function DashboardSelect() {
           Blue Opus Dashboards
         </h3>
 
-        <div className="shadow-inner border border-[#95E36C] rounded-lg p-4 mb-12">
+        <div className="shadow-inner border border-lime-text rounded-lg p-4 mb-12">
           <h2 className="font-semibold">
             Select Dashboard
           </h2>
@@ -36,7 +36,7 @@ export default function DashboardSelect() {
       <div className="fixed h-28 bottom-0 left-0 right-0">
         <Button
           className="flex items-center justify-center font-semibold rounded-xl  
-        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed w-[340px] h-[47px] top-0 mx-auto bg-(--primary-color) text-white"
+        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed w-[340px] h-[47px] top-0 mx-auto bg-primary text-white"
           onClick={() => navigate(selectedDashboard || "/dashboard")}
         >
           Proceed

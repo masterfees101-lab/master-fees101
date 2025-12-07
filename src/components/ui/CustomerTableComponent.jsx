@@ -10,25 +10,18 @@ import {
   SortDescIcon,
   UploadIcon,
 } from "lucide-react";
+import { CUSTOMER_TABLE_MOCK_ROWS, MOCK_CUSTOMER, GRADE_TABS } from "../../utils/constants";
 
 export default function CustomersTable() {
-  const rows = Array.from({ length: 50 }).map((_, i) => ({
-    grade: "Reception",
-    name: "Jacob Banda",
-    id: "203437192",
-    balance: "-",
-    status: "Status",
+  const rows = Array.from({ length: CUSTOMER_TABLE_MOCK_ROWS }).map((_, i) => ({
+    grade: MOCK_CUSTOMER.grade,
+    name: MOCK_CUSTOMER.name,
+    id: MOCK_CUSTOMER.id,
+    balance: MOCK_CUSTOMER.balance,
+    status: MOCK_CUSTOMER.status,
   }));
 
-  const tabs = [
-    "All",
-    "Baby Class",
-    "Reception",
-    "Grade 1A",
-    "Grade 1B",
-    "Grade 2A",
-    "Grade 2B",
-  ];
+  const tabs = GRADE_TABS;
 
   return (
     <div className="p-6 w-full overflow-scroll thin-scrollbar">

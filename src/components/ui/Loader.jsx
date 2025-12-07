@@ -6,11 +6,11 @@ import "../../styles/loader.css";
 
 function Loader() {
     return (
-        <div className="flex h-full w-full items-center bg-green-500 justify-center gap-1">
+        <div className="flex h-full w-full items-center justify-center gap-1">
             {[0, 1, 2].map((i) => (
                 <div
                     key={i}
-                    className={`w-full h-full rounded-full bg-red-500 loader-dot`}
+                    className="w-full h-full rounded-full bg-white loader-dot"
                     style={{ animationDelay: `${i * 0.2}s` }}
                 ></div>
             ))}

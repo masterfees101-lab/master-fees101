@@ -1,5 +1,5 @@
-export default function Label ({ children, className }) {
+export default function Label ({ children, className, htmlFor }) {
     return (
-        <label className={`${className} block text-white font-medium mb-2`}>{children}</label>
+        <label htmlFor={htmlFor} className={`${className} block text-white font-medium mb-2`}>{children}</label>
     )
 }

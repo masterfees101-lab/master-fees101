@@ -1,16 +1,11 @@
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import bgImage from "../../assets/images/backgrounds/receivables-card-bg.png";
-import settings from "../../assets/images/icons/menu/settings.svg";
+import bgImage from "../../assets/backgrounds/receivables-card-bg.png";
+import settings from "../../assets/icons/menu/settings.svg";
 import { PieChart, Pie, Cell } from "recharts";
+import { REVENUE_CATEGORIES } from "../../utils/constants";
 
-// TODO: Replace with real data as well as percentage collected calculation
-const categories = [
-    { name: "Tuition Fees", revenue: 500, collected: 350, balance: 0 },
-    { name: "Transport Fees", revenue: 100, collected: 30, balance: 0 },
-    { name: "Canteen Fees", revenue: 300, collected: 300, balance: 0 },
-    { name: "PTC Parent’s fees", revenue: 200, collected: 120, balance: 0 },
-];
+const categories = REVENUE_CATEGORIES;
 
 export default function ReceivablesPanel() {
     const navigate = useNavigate();
@@ -43,12 +38,12 @@ export default function ReceivablesPanel() {
                 }}
             >
                 <div>
-                    <p className="text-sm text-(--lime-text)">Total Revenue</p>
+                    <p className="text-sm text-lime-text">Total Revenue</p>
                     <h3 className="text-4xl font-extrabold tracking-tight mt-1">ZMW 0</h3>
                 </div>
 
                 <div>
-                    <p className="text-sm text-(--lime-text)">Total Receivables</p>
+                    <p className="text-sm text-lime-text">Total Receivables</p>
                     <h3 className="text-4xl font-extrabold tracking-tight mt-1">ZMW 0</h3>
                 </div>
 
@@ -81,23 +76,23 @@ export default function ReceivablesPanel() {
                             <div className="flex items-center justify-between w-48">
                                 <div className="ml-5">
                                     <div className="font-medium">{category.name}</div>
-                                    <div className="text-[10px] text-(--primary-text) bg-[#95E36C] inline-block px-2 py-0.5 rounded-full">
+                                    <div className="text-[10px] text-primary-text bg-lime-text inline-block px-2 py-0.5 rounded-full">
                                         - % Collected
                                     </div>
                                 </div>
                                 <PieChart width={22} height={22}>
                                     <Pie
                                         data={[
-                                            { name: "Collected", value: category.collected },
-                                            { name: "Balance", value: category.balance },
+                                            { name: "Collected", value: category.collected || 1 },
+                                            { name: "Balance", value: category.balance || 1 },
                                         ]}
                                         dataKey="value"
                                         innerRadius={5}
                                         outerRadius={10}
                                         paddingAngle={1}
                                     >
-                                        <Cell fill="#EEECEC" />
-                                        <Cell fill="#003630" />
+                                        <Cell fill={category.collected > 0 || category.balance > 0 ? "#EEECEC" : "#D1D5DB"} />
+                                        <Cell fill={category.collected > 0 || category.balance > 0 ? "#003630" : "#D1D5DB"} />
                                     </Pie>
                                 </PieChart>
                             </div>
