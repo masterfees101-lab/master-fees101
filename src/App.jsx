@@ -1,8 +1,8 @@
 import './App.css'
 import { Toaster } from "react-hot-toast";
-import AppRoutes from "./routes/AppRoutes";
-import ErrorBoundary from "./components/ErrorBoundary";
-import { TOAST_DURATION } from "./utils/constants";
+import AppRoutes from "@routes/AppRoutes";
+import ErrorBoundary from "@components/ErrorBoundary";
+import { TOAST_DURATION } from "@utils/constants";
 
 function App() {
   return (

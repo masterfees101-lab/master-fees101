@@ -1,9 +1,9 @@
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import bgImage from "../../assets/backgrounds/receivables-card-bg.png";
-import settings from "../../assets/icons/menu/settings.svg";
+import bgImage from "@assets/backgrounds/receivables-card-bg.png";
+import settings from "@assets/icons/menu/settings.svg";
 import { PieChart, Pie, Cell } from "recharts";
-import { REVENUE_CATEGORIES } from "../../utils/constants";
+import { REVENUE_CATEGORIES } from "@utils/constants";
 
 const categories = REVENUE_CATEGORIES;
 

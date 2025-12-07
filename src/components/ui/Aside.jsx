@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../ui/Button";
-import { generalViews, supportViews } from "../../utils/views";
+import { generalViews, supportViews } from "@utils/views";
 import Logo from "../ui/Logo";
 import Footer from "./Footer";
 

@@ -1,4 +1,4 @@
-import "../../styles/loader.css";
+import "@styles/loader.css";
 
 /** 
     Using native css imports for animation styles to avoid library bloat.

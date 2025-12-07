@@ -1,4 +1,4 @@
-import { DEFAULT_TOTAL_REVENUE, DEFAULT_COLLECTED_REVENUE } from "../../utils/constants";
+import { DEFAULT_TOTAL_REVENUE, DEFAULT_COLLECTED_REVENUE } from "@utils/constants";
 
 export default function RevenueBreakdownCard() {
   const total = DEFAULT_TOTAL_REVENUE;

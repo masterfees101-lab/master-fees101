@@ -10,7 +10,7 @@ import {
   SortDescIcon,
   UploadIcon,
 } from "lucide-react";
-import { CUSTOMER_TABLE_MOCK_ROWS, MOCK_CUSTOMER, GRADE_TABS } from "../../utils/constants";
+import { CUSTOMER_TABLE_MOCK_ROWS, MOCK_CUSTOMER, GRADE_TABS } from "@utils/constants";
 
 export default function CustomersTable() {
   const rows = Array.from({ length: CUSTOMER_TABLE_MOCK_ROWS }).map((_, i) => ({

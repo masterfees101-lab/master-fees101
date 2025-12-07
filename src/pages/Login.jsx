@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bgImage from "../assets/backgrounds/login-bg.png";
-import { supabase } from "../services/supabase/client";
+import bgImage from "@assets/backgrounds/login-bg.png";
+import { supabase } from "@services/supabase/client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Loader } from "lucide-react";
-import Input from "../components/ui/Input";
-import Label from "../components/ui/Label";
-import Button from "../components/ui/Button";
-import Logo from "../components/ui/Logo";
-import Footer from "../components/ui/Footer";
+import Input from "@components/ui/Input";
+import Label from "@components/ui/Label";
+import Button from "@components/ui/Button";
+import Logo from "@components/ui/Logo";
+import Footer from "@components/ui/Footer";
 
 export default function Login() {
   const navigate = useNavigate();

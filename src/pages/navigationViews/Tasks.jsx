@@ -1,9 +1,9 @@
-import DashboardHeading from "../../components/ui/DashboardHeading";
-import taskBg from "../../assets/backgrounds/tasks-bg.png";
-import Button from "../../components/ui/Button";
-import ellipsis from "../../assets/icons/ellipsis-vertical.svg";
-import TaskCard from "../../components/ui/TaskCard";
-import { MOCK_TASKS, TASK_COUNT } from "../../utils/constants";
+import DashboardHeading from "@components/ui/DashboardHeading";
+import taskBg from "@assets/backgrounds/tasks-bg.png";
+import Button from "@components/ui/Button";
+import ellipsis from "@assets/icons/ellipsis-vertical.svg";
+import TaskCard from "@components/ui/TaskCard";
+import { MOCK_TASKS, TASK_COUNT } from "@utils/constants";
 
 const tasks = MOCK_TASKS;
 

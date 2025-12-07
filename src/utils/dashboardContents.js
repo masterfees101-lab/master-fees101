@@ -1,5 +1,5 @@
-import campus from "../assets/logos/campus.png"; 
-import fees from "../assets/logos/master-fees.png";
+import campus from "@assets/logos/campus.png"; 
+import fees from "@assets/logos/master-fees.png";
 
 const dashboardContents = [
     {

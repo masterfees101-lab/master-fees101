@@ -5,10 +5,10 @@ import {
   Settings,
   Wallet2Icon,
 } from "lucide-react";
-import RevenueRecovery from "../../components/ui/RevenueRecovery";
-import DashboardHeading from "../../components/ui/DashboardHeading";
-import RevenueBreakdownCard from "../../components/ui/RevenueBreakdownCard";
-import UpdatesPanel from "../../components/ui/UpdatesPanel";
+import RevenueRecovery from "@components/ui/RevenueRecovery";
+import DashboardHeading from "@components/ui/DashboardHeading";
+import RevenueBreakdownCard from "@components/ui/RevenueBreakdownCard";
+import UpdatesPanel from "@components/ui/UpdatesPanel";
 
 export default function HomePage() {
   return (

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Logo from "../components/ui/Logo";
+import Logo from "@components/ui/Logo";
 import { useNavigate } from "react-router-dom";
-import dashboardContents from "../utils/dashboardContents";
-import DashboardCard from "../components/ui/DashboardCard";
-import Button from "../components/ui/Button";
+import dashboardContents from "@utils/dashboardContents";
+import DashboardCard from "@components/ui/DashboardCard";
+import Button from "@components/ui/Button";
 
 export default function DashboardSelect() {
   const navigate = useNavigate();

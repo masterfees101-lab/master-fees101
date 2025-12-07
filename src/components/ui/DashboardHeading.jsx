@@ -1,5 +1,5 @@
-import wallet from "../../assets/icons/menu/wallet.svg";
-import { DEFAULT_BALANCE, DEFAULT_SCHOOL_NAME } from "../../utils/constants";
+import wallet from "@assets/icons/menu/wallet.svg";
+import { DEFAULT_BALANCE, DEFAULT_SCHOOL_NAME } from "@utils/constants";
 
 function DashboardHeading({showBalance = true}) {
   const balance = DEFAULT_BALANCE;

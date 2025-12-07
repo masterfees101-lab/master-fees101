@@ -1,5 +1,5 @@
-import CustomersTable from "../../components/ui/CustomerTableComponent";
-import DashboardHeading from "../../components/ui/DashboardHeading";
+import CustomersTable from "@components/ui/CustomerTableComponent";
+import DashboardHeading from "@components/ui/DashboardHeading";
 
 export default function CustomerManagement() {
   return (
