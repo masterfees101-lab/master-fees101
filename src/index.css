@@ -5,10 +5,14 @@
 :root {
   --primary-color: #003630; /* Dark teal */
   --secondary-color: #ffffff; /* White */
-  --lime-text: #95E36C; /* lime-400 for text */
-  --lime-bg: #CFF2BD; /* lime-200 for backgrounds */
+  --lime-text: #95e36c; /* lime-400 for text */
+  --lime-bg: #cff2bd; /* lime-200 for backgrounds */
 }
-body {
+body,
+h1,
+h2,
+h3,
+h4 {
   font-family: "IBM Plex Sans Devanagari", sans-serif;
 }
 

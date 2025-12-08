@@ -10,6 +10,7 @@ import {
   SortDescIcon,
   UploadIcon,
 } from "lucide-react";
+import SortFilterSearch from "./SortFilterSearch";
 
 export default function CustomersTable() {
   const rows = Array.from({ length: 50 }).map((_, i) => ({
@@ -53,7 +54,7 @@ export default function CustomersTable() {
             Import/Export
           </button>
 
-          <button className="px-4 py-2 gap-4 font-bold flex justify-end items-center bg-[#5DFCAF] text-[#003049] rounded-xl text-[12px]">
+          <button className="px-4 py-2 gap-4 font-bold flex justify-between items-center bg-[#95E36C] text-[#003049] rounded-xl text-[12px]">
             <span>
               <Plus />
             </span>
@@ -70,51 +71,50 @@ export default function CustomersTable() {
               key={i}
               className={`pb-2 w-[20%] ${
                 i === 0
-                  ? "border-b-3 border-[#5DFCAF] font-medium"
-                  : "text-gray-500"
+                  ? "border-b-3 border-[#95E36C] text-[#003630] font-medium"
+                  : "text-gray-500 font-medium"
               }`}
             >
               {t}
             </button>
           ))}
         </div>
-        <div className="flex gap-5">
-          <SearchCheckIcon size={18} />
-          <FilterIcon size={18} />
-          <SortDescIcon size={18} />
-        </div>
+        <SortFilterSearch />
       </div>
 
       {/* Table */}
-      <div className="border border-[#CBD2E0] rounded-md overflow-hidden max-h-[400px] overflow-y-auto hover:overflow-y-scroll thin-scrollbar">
+      <div className="border border-[#003630] rounded-md overflow-hidden max-h-[400px] overflow-y-auto hover:overflow-y-scroll thin-scrollbar">
         <table className="w-full text-sm">
-          <thead className="bg-[#F6F7F9] text-gray-600 sticky top-0 z-10">
+          <thead className="bg-[#E7F9DE]  text-[#003630] sticky top-0 z-10">
             <tr>
               <th className="py-3 px-4 text-left w-10">
                 <input type="checkbox" />
               </th>
-              <th className="py-3 text-left text-[12px] text-[#B2BBCC]">
+              <th className="py-3 text-left text-[12px] text-[#003630]">
                 Grade
               </th>
-              <th className="py-3 text-left text-[12px] text-[#B2BBCC]">
+              <th className="py-3 text-left text-[12px] text-[#003630]">
                 Student Name
               </th>
-              <th className="py-3 text-left text-[12px] text-[#B2BBCC]">
+              <th className="py-3 text-left text-[12px] text-[#003630]">
                 Student ID
               </th>
-              <th className="py-3 px-12 text-[12px] text-center text-[#B2BBCC]">
+              <th className="py-3 px-12 text-[12px] text-center text-[#003630]">
                 Balance
               </th>
-              <th className="py-3 text-[12px] ml-9 text-[#B2BBCC]">Status</th>
+              <th className="py-3 text-[12px] ml-9text-[#003630]">Status</th>
               <th className="py-3 align-middle flex justify-center">
-                <PlusCircle color="#B2BBCC" />
+                <PlusCircle color="#003630" />
               </th>
             </tr>
           </thead>
 
           <tbody>
             {rows.map((r, i) => (
-              <tr key={i} className="border-t border-[#CBD2E0] text-[#000000]">
+              <tr
+                key={i}
+                className="border-t border-[#CBD2E0] hover:bg-gray-50 text-[#000000] cursor-pointer"
+              >
                 <td className="py-3 px-4">
                   <input type="checkbox" />
                 </td>
