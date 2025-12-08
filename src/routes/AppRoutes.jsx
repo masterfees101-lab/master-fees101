@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
-import DashboardSelect from "../pages/DashboardSelect";
-import Dashboard from "../pages/Dashboard";
-import PageNotFound from "../pages/PageNotFound";
+import Login from "@pages/Login";
+import DashboardSelect from "@pages/DashboardSelect";
+import Dashboard from "@pages/Dashboard";
+import PageNotFound from "@pages/PageNotFound";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 export default function AppRoutes() {
   return (

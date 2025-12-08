@@ -1,5 +1,5 @@
-import ReceivablesPanel from "../../components/ui/ReceivablesPanel";
-import DashboardHeading from "../../components/ui/DashboardHeading";
+import ReceivablesPanel from "@components/ui/ReceivablesPanel";
+import DashboardHeading from "@components/ui/DashboardHeading";
 
 export default function Transactions() {
     return (

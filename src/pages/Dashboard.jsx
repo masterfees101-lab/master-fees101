@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { generalViews, supportViews } from "../utils/views";
-import Aside from "../components/ui/Aside";
+import { generalViews, supportViews } from "@utils/views";
+import Aside from "@components/ui/Aside";
 
 export default function Dashboard() {
     const [activeView, setActiveView] = useState("homepage");

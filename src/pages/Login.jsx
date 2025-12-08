@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bgImage from "../assets/images/backgrounds/login-bg.png";
-import { supabase } from "../services/supabase/client";
+import bgImage from "@assets/backgrounds/login-bg.png";
+import { supabase } from "@services/supabase/client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Loader } from "lucide-react";
-import Input from "../components/ui/Input";
-import Label from "../components/ui/Label";
-import Button from "../components/ui/Button";
-import Logo from "../components/ui/Logo";
-import Footer from "../components/ui/Footer";
+import Input from "@components/ui/Input";
+import Label from "@components/ui/Label";
+import Button from "@components/ui/Button";
+import Logo from "@components/ui/Logo";
+import Footer from "@components/ui/Footer";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -26,12 +26,11 @@ export default function Login() {
       return;
     }
 
-    const { _, error: authError } = await supabase.auth.signInWithPassword({
+    const { error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    // TODO: Handle different error types
     if (authError) {
       if (authError.message.includes("Invalid login credentials")) {
         toast.error("Invalid email or password.");
@@ -52,16 +51,19 @@ export default function Login() {
         <div className="bg-transparent flex flex-col justify-center items-center p-6" style={{ backgroundImage: `url(${bgImage})`, backgroundOrigin: 'cover', backgroundPosition: 'center', backgroundSize: 'cover', width: '100%', height: '100%' }}>
           <div className="max-sm:w-full w-[340px]">
             <h1 className="text-white text-[52px] font-bold mb-6">Welcome Back</h1>
-            <Label>Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              className="mb-4"
+              id="email"
+              type="email"
+              className="mb-4 p-3 rounded-xl bg-primary text-white border border-gray-100 focus:outline-none"
               placeholder="Enter your school email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Label>Password</Label>
+            <Label htmlFor="password">Password</Label>
             <div className="relative">
               <Input
-                className="pr-12"
+                id="password"
+                className="pr-12 p-3 rounded-xl bg-primary text-white border border-gray-100 focus:outline-none"
                 placeholder="Enter your password"
                 type={show ? "text" : "password"}
                 onChange={(e) => setPassword(e.target.value)}
@@ -86,14 +88,14 @@ export default function Login() {
               onClick={handleLogin}
               disabled={loading}
               className="flex items-center justify-center font-semibold rounded-xl  
-        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed h-[47px] w-full bg-white text-(--primary-color)"
+        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed h-[47px] w-full bg-white text-primary"
             >
               {loading ? <Loader /> : "Sign in"}
             </Button>
           </div>
         </div>
       </div>
-      <div className="h-screen w-1/2 hidden bg-white text-(--primary-color) text-center p-6 md:flex flex-col items-center justify-between py-12">
+      <div className="h-screen w-1/2 hidden bg-white text-primary text-center p-6 md:flex flex-col items-center justify-between py-12">
         <div className="h-1/2 py-8 flex flex-col justify-between">
           <h1 className="text-6xl font-semibold leading-28 ">Quick Tips</h1>
           <p>

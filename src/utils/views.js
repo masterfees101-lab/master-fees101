@@ -1,21 +1,21 @@
-import HomePage from "../pages/navigationViews/HomePage";
-import Transactions from "../pages/navigationViews/Transactions";
-import CustomerManagement from "../pages/navigationViews/CustomerManagement";
-import Tasks from "../pages/navigationViews/Tasks";
-import Wallet from "../pages/navigationViews/Wallet";
-import Integrations from "../pages/navigationViews/Integrations";
-import CustomerSupport from "../pages/navigationViews/CustomerSupport";
-import Settings from "../pages/navigationViews/Settings";
+import HomePage from "@pages/navigationViews/HomePage";
+import Transactions from "@pages/navigationViews/Transactions";
+import CustomerManagement from "@pages/navigationViews/CustomerManagement";
+import Tasks from "@pages/navigationViews/Tasks";
+import Wallet from "@pages/navigationViews/Wallet";
+import Integrations from "@pages/navigationViews/Integrations";
+import CustomerSupport from "@pages/navigationViews/CustomerSupport";
+import Settings from "@pages/navigationViews/Settings";
 
 // Icons
-import home from "../assets/images/icons/menu/home.svg";
-import transactions from "../assets/images/icons/menu/transactions.svg";
-import customers from "../assets/images/icons/menu/customeManagement.svg";
-import tasks from "../assets/images/icons/menu/tasks.svg";
-import wallet from "../assets/images/icons/menu/wallet.svg";
-import integrations from "../assets/images/icons/menu/intergrations.svg";
-import support from "../assets/images/icons/menu/care.svg";
-import settings from "../assets/images/icons/menu/settings.svg";
+import home from "@assets/icons/menu/home.svg";
+import transactions from "@assets/icons/menu/transactions.svg";
+import customers from "@assets/icons/menu/customeManagement.svg";
+import tasks from "@assets/icons/menu/tasks.svg";
+import wallet from "@assets/icons/menu/wallet.svg";
+import integrations from "@assets/icons/menu/intergrations.svg";
+import support from "@assets/icons/menu/care.svg";
+import settings from "@assets/icons/menu/settings.svg";
 
 export const generalViews = [
   { key: "homepage", label: "Homepage", component: HomePage, icon: home },
