@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { Toaster } from "react-hot-toast";
 import AppRoutes from "@routes/AppRoutes";
 import ErrorBoundary from "@components/ErrorBoundary";
@@ -9,19 +9,19 @@ function App() {
     <ErrorBoundary>
       <AppRoutes />
       <Toaster
-        position="top-right"
+        position="top-center"
         reverseOrder={false}
         toastOptions={{
           duration: TOAST_DURATION,
           style: {
-            background: "#333",
-            color: "#fff",
+            background: "#fff",
+            color: "#333",
             borderRadius: "8px",
           },
         }}
       />
     </ErrorBoundary>
-  )
+  );
 }
 
 export default App;
