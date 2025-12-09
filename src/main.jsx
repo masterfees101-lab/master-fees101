@@ -9,12 +9,8 @@ import { WalletProvider } from "./context/WalletContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <WalletProvider>
-          <App />
-        </WalletProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </StrictMode>
 );

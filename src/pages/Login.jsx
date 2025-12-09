@@ -35,7 +35,7 @@ export default function Login() {
       if (authError.message.includes("Invalid login credentials")) {
         toast.error("Invalid email or password.");
       } else {
-        toast.error(authError.message)
+        toast.error(authError.message);
       }
     } else {
       // Successful login - navigate to dashboardSelect
@@ -47,10 +47,21 @@ export default function Login() {
   return (
     <div className="h-screen flex flex-row">
       <div className="max-md:w-full h-full w-1/2">
-        <Logo className="text-white px-6 py-2" />
-        <div className="bg-transparent flex flex-col justify-center items-center p-6" style={{ backgroundImage: `url(${bgImage})`, backgroundOrigin: 'cover', backgroundPosition: 'center', backgroundSize: 'cover', width: '100%', height: '100%' }}>
+        <div
+          className="bg-transparent flex flex-col justify-center items-center p-6"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundOrigin: "cover",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "100%",
+          }}
+        >
           <div className="max-sm:w-full w-[340px]">
-            <h1 className="text-white text-[52px] font-bold mb-6">Welcome Back</h1>
+            <h1 className="text-white text-[52px] font-bold mb-6">
+              Welcome Back
+            </h1>
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
@@ -82,7 +93,9 @@ export default function Login() {
               </div>
 
               {/* TODO: Change the element below to an actual link */}
-              <span className="hover:underline cursor-pointer">Forgot password?</span>
+              <span className="hover:underline cursor-pointer">
+                Forgot password?
+              </span>
             </div>
             <Button
               onClick={handleLogin}
@@ -99,9 +112,12 @@ export default function Login() {
         <div className="h-1/2 py-8 flex flex-col justify-between">
           <h1 className="text-6xl font-semibold leading-28 ">Quick Tips</h1>
           <p>
-            <span className="font-medium text-2xl mb-2 block">Ask for Support</span>
+            <span className="font-medium text-2xl mb-2 block">
+              Ask for Support
+            </span>
             <span className="leading-5 block">
-              If something seems off - like missing transactions or invoices - Contact your support team or Master-Fees admin.
+              If something seems off - like missing transactions or invoices -
+              Contact your support team or Master-Fees admin.
             </span>
           </p>
         </div>

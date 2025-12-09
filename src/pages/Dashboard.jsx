@@ -1,27 +1,19 @@
-import { useState } from "react";
-import { generalViews, supportViews } from "@utils/views";
-import Aside from "@components/ui/Aside";
+// Dashboard.jsx
+import { Outlet } from "react-router-dom";
+import PageNavigation from "@/components/ui/PageNavigation";
 
 export default function Dashboard() {
-    const [activeView, setActiveView] = useState("homepage");
+  return (
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white border-r border-gray-200">
+        <PageNavigation />
+      </aside>
 
-    // Build a lookup from arrays
-    const allViews = [...generalViews, ...supportViews].reduce((acc, v) => {
-        acc[v.key] = v.component;
-        return acc;
-    }, {});
-
-    const renderView = () => {
-        const ViewComponent = allViews[activeView] || allViews["homepage"];
-        return ViewComponent ? <ViewComponent /> : null;
-    };
-
-    return (
-        <div className="flex flex-row h-screen">
-            <Aside handleViewSelection={setActiveView} />
-            <main className="flex-1 bg-gray-100 ">
-                {renderView()}
-            </main>
-        </div>
-    );
+      {/* Main content */}
+      <main className="flex-1 p-6 overflow-auto">
+        <Outlet />
+      </main>
+    </div>
+  );
 }
