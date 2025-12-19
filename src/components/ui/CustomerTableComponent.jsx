@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FilterIcon,
   Plus,
@@ -16,12 +16,17 @@ import {
   GRADE_TABS,
 } from "@utils/constants";
 import SortFilterSearch from "./SortFilterSearch";
+import { useCustomer } from "@/context/CustomerContext";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 export default function CustomersTable() {
+  const { setView } = useCustomer();
+  const [expandedRow, setExpandedRow] = useState(null);
+
   const rows = Array.from({ length: CUSTOMER_TABLE_MOCK_ROWS }).map((_, i) => ({
     grade: MOCK_CUSTOMER.grade,
     name: MOCK_CUSTOMER.name,
-    id: MOCK_CUSTOMER.id,
+    id: `${MOCK_CUSTOMER.id}-${i}`,
     balance: MOCK_CUSTOMER.balance,
     status: MOCK_CUSTOMER.status,
   }));
@@ -44,7 +49,10 @@ export default function CustomersTable() {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex items-center font-semibold gap-4 px-4 py-2 border border-gray-300 rounded-xl text-[12px]">
+          <button
+            onClick={() => setView("import")}
+            className="flex items-center font-semibold gap-4 px-4 py-2 border border-gray-300 rounded-xl text-[12px]"
+          >
             <span>
               <UploadIcon />
             </span>
@@ -108,22 +116,152 @@ export default function CustomersTable() {
 
           <tbody>
             {rows.map((r, i) => (
-              <tr
-                key={i}
-                className="border-t border-[#CBD2E0] hover:bg-gray-50 text-[#000000] cursor-pointer"
-              >
-                <td className="py-3 px-4">
-                  <input type="checkbox" />
-                </td>
-                <td className="py-3 text-[12px]">{r.grade}</td>
-                <td className="py-3 text-[12px]">{r.name}</td>
-                <td className="py-3 text-[12px]">{r.id}</td>
-                <td className="py-3 text-[12px] text-center w-2/4 px-12">
-                  {r.balance}
-                </td>
-                <td className="py-3 text-[12px] text-center">{r.status}</td>
-                <td className="py-3 text-[12px] flex justify-center">›</td>
-              </tr>
+              <React.Fragment key={i}>
+                <tr
+                  onClick={() =>
+                    setExpandedRow(expandedRow === r.id ? null : r.id)
+                  }
+                  className={`border-t border-[#CBD2E0] hover:bg-gray-50 text-[#000000] cursor-pointer ${
+                    expandedRow === r.id ? "" : ""
+                  }`}
+                >
+                  <td className="py-3 px-4">
+                    <input
+                      type="checkbox"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </td>
+                  <td className="py-3 text-[12px]">{r.grade}</td>
+                  <td className="py-3 text-[12px]">{r.name}</td>
+                  <td className="py-3 text-[12px]">{r.id.split("-")[0]}</td>
+                  <td className="py-3 text-[12px] text-center w-2/4 px-12">
+                    {r.balance}
+                  </td>
+                  <td className="py-3 text-[12px] text-center">{r.status}</td>
+                  <td className="py-3 text-[12px] flex justify-center">
+                    {expandedRow === r.id ? (
+                      <ChevronDown className="w-4 h-4" />
+                    ) : (
+                      <ChevronRight className="w-4 h-4" />
+                    )}
+                  </td>
+                </tr>
+                {expandedRow === r.id && (
+                  <tr className=" rounded-2xl ">
+                    <td colSpan="7" className="p-4  ">
+                      <div className="p-6 border border-[#CBD2E0] bg-[#E7F9DE] rounded-2xl ">
+                        <div className="flex justify-between">
+                          <h3 className="font-bold text-xs mb-4">
+                            Pupil Details
+                          </h3>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-y-4 gap-x-8 mb-6">
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              First Name
+                            </p>
+                            <p className="font-medium text-[12px]">Jacob</p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Last Name
+                            </p>
+                            <p className="font-medium text-[12px]">Banda</p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Other Name
+                            </p>
+                            <p className="font-medium text-[12px]">-</p>
+                          </div>
+
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Grade
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              Reception
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Balance Amount
+                            </p>
+                            <p className="font-regular text-[12px]">ZMW 0</p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Name of Guardian
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              Mr James Banda
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Student Info
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              203437192
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Balance Due Date
+                            </p>
+                            <p className="font-regular text-[12px]">N/A</p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Email Address
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              jamesbanda101@gmail.com
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Date of enrollment
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              28/02/2025
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              No. of settled balances
+                            </p>
+                            <p className="font-regular text-[12px]">N/A</p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] text-[#707479] mb-1">
+                              Phone Number
+                            </p>
+                            <p className="font-regular text-[12px]">
+                              +260712010246
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-end border-t border-[#CBD2E0] bg-white p-3 rounded-b-lg -mx-6 -mb-6 mt-4">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setView("details", r.id);
+                            }}
+                            className="text-sm font-semibold text-gray-700 hover:text-black"
+                          >
+                            View/Edit Details
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))}
           </tbody>
         </table>
