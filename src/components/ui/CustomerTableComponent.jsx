@@ -18,20 +18,26 @@ import {
 import SortFilterSearch from "./SortFilterSearch";
 import { useCustomer } from "@/context/CustomerContext";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { useGetStudents, useGetParentFromStudent } from "@/hooks/Students";
+const tabs = GRADE_TABS;
 
 export default function CustomersTable() {
   const { setView } = useCustomer();
   const [expandedRow, setExpandedRow] = useState(null);
+  const { customerId } = useCustomer();
+  //get useGetStudent and useGetParentFromStudent
+  const {
+    data: students,
+    isPending: isStudentsLoading,
+    error: studentsError,
+  } = useGetStudents();
 
-  const rows = Array.from({ length: CUSTOMER_TABLE_MOCK_ROWS }).map((_, i) => ({
-    grade: MOCK_CUSTOMER.grade,
-    name: MOCK_CUSTOMER.name,
-    id: `${MOCK_CUSTOMER.id}-${i}`,
-    balance: MOCK_CUSTOMER.balance,
-    status: MOCK_CUSTOMER.status,
-  }));
-
-  const tabs = GRADE_TABS;
+  // Fetch parent when a row is expanded
+  const {
+    data: parent,
+    isPending: isParentLoading,
+    error: parentError,
+  } = useGetParentFromStudent(expandedRow);
 
   return (
     <div className="p-6 w-full overflow-scroll thin-scrollbar">
@@ -115,14 +121,19 @@ export default function CustomersTable() {
           </thead>
 
           <tbody>
-            {rows.map((r, i) => (
+            {/* Showing students in the database */}
+            {students?.map((student, i) => (
               <React.Fragment key={i}>
                 <tr
                   onClick={() =>
-                    setExpandedRow(expandedRow === r.id ? null : r.id)
+                    setExpandedRow(
+                      expandedRow === student.student_id
+                        ? null
+                        : student.student_id
+                    )
                   }
                   className={`border-t border-[#CBD2E0] hover:bg-gray-50 text-[#000000] cursor-pointer ${
-                    expandedRow === r.id ? "" : ""
+                    expandedRow === student.student_id ? "" : ""
                   }`}
                 >
                   <td className="py-3 px-4">
@@ -131,22 +142,26 @@ export default function CustomersTable() {
                       onClick={(e) => e.stopPropagation()}
                     />
                   </td>
-                  <td className="py-3 text-[12px]">{r.grade}</td>
-                  <td className="py-3 text-[12px]">{r.name}</td>
-                  <td className="py-3 text-[12px]">{r.id.split("-")[0]}</td>
-                  <td className="py-3 text-[12px] text-center w-2/4 px-12">
-                    {r.balance}
+                  <td className="py-3 text-[12px]">{student.grade}</td>
+                  <td className="py-3 text-[12px]">
+                    {student.first_name + " " + student.last_name}
                   </td>
-                  <td className="py-3 text-[12px] text-center">{r.status}</td>
+                  <td className="py-3 text-[12px]">
+                    {student.student_id.split("-")[0]}
+                  </td>
+                  <td className="py-3 text-[12px] text-center w-2/4 px-12">
+                    {student.balance}
+                  </td>
+                  <td className="py-3 text-[12px] text-center">{"Status"}</td>
                   <td className="py-3 text-[12px] flex justify-center">
-                    {expandedRow === r.id ? (
+                    {expandedRow === student.student_id ? (
                       <ChevronDown className="w-4 h-4" />
                     ) : (
                       <ChevronRight className="w-4 h-4" />
                     )}
                   </td>
                 </tr>
-                {expandedRow === r.id && (
+                {expandedRow === student.student_id && (
                   <tr className=" rounded-2xl ">
                     <td colSpan="7" className="p-4  ">
                       <div className="p-6 border border-[#CBD2E0] bg-[#E7F9DE] rounded-2xl ">
@@ -161,13 +176,17 @@ export default function CustomersTable() {
                             <p className="text-[8px] text-[#707479] mb-1">
                               First Name
                             </p>
-                            <p className="font-medium text-[12px]">Jacob</p>
+                            <p className="font-medium text-[12px]">
+                              {student.first_name}
+                            </p>
                           </div>
                           <div>
                             <p className="text-[8px] text-[#707479] mb-1">
                               Last Name
                             </p>
-                            <p className="font-medium text-[12px]">Banda</p>
+                            <p className="font-medium text-[12px]">
+                              {student.last_name}
+                            </p>
                           </div>
                           <div>
                             <p className="text-[8px] text-[#707479] mb-1">
@@ -181,7 +200,7 @@ export default function CustomersTable() {
                               Grade
                             </p>
                             <p className="font-regular text-[12px]">
-                              Reception
+                              {student.grade}
                             </p>
                           </div>
                           <div>
@@ -195,7 +214,11 @@ export default function CustomersTable() {
                               Name of Guardian
                             </p>
                             <p className="font-regular text-[12px]">
-                              Mr James Banda
+                              {isParentLoading
+                                ? "Loading..."
+                                : parent
+                                ? `${parent.first_name} ${parent.last_name}`
+                                : "N/A"}
                             </p>
                           </div>
 
@@ -204,7 +227,7 @@ export default function CustomersTable() {
                               Student Info
                             </p>
                             <p className="font-regular text-[12px]">
-                              203437192
+                              {student.student_id.split("-")[0]}
                             </p>
                           </div>
                           <div>
@@ -218,7 +241,9 @@ export default function CustomersTable() {
                               Email Address
                             </p>
                             <p className="font-regular text-[12px]">
-                              jamesbanda101@gmail.com
+                              {isParentLoading
+                                ? "Loading..."
+                                : parent?.email || "N/A"}
                             </p>
                           </div>
 
@@ -241,7 +266,9 @@ export default function CustomersTable() {
                               Phone Number
                             </p>
                             <p className="font-regular text-[12px]">
-                              +260712010246
+                              {isParentLoading
+                                ? "Loading..."
+                                : parent?.phone_number || "N/A"}
                             </p>
                           </div>
                         </div>

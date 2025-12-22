@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import { Search, ChevronDown, Image as ImageIcon } from "lucide-react";
 
 export default function Settings() {
@@ -9,6 +10,8 @@ export default function Settings() {
     { name: "Account Verification", active: false },
     { name: "Subscription & Billing", active: false },
   ];
+
+  const { user } = useAuth();
 
   return (
     <div className="bg-white p-8 w-full font-sans text-gray-800 rounded">
@@ -102,7 +105,7 @@ export default function Settings() {
                 <div className="relative">
                   <input
                     type="text"
-                    defaultValue="Twalumbu Education Centre"
+                    value={user.user_metadata.display_name || ""}
                     className="w-full p-4 pr-10 border border-gray-300 rounded-lg text-gray-500 outline-none focus:border-green-500 bg-white"
                     readOnly
                   />

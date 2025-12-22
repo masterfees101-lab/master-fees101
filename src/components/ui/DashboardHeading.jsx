@@ -1,12 +1,19 @@
+import { useAuth } from "@/context/AuthContext";
 import wallet from "@assets/icons/menu/wallet.svg";
-import { DEFAULT_BALANCE, DEFAULT_SCHOOL_NAME } from "@utils/constants";
+import { DEFAULT_BALANCE } from "@utils/constants";
 
-function DashboardHeading({showBalance = true}) {
+function DashboardHeading({ showBalance = true }) {
   const balance = DEFAULT_BALANCE;
-  const title = DEFAULT_SCHOOL_NAME;
+  const { user } = useAuth();
   return (
-    <header className={`flex items-center ${showBalance ? 'justify-between' : 'justify-end'}`}>
-      <h1 className="text-[17px] font-bold">{title}</h1>
+    <header
+      className={`flex items-center ${
+        showBalance ? "justify-between" : "justify-end"
+      }`}
+    >
+      <h1 className="text-[17px] font-bold">
+        {user.user_metadata.display_name || ""}
+      </h1>
       {showBalance && (
         <span className="flex gap-2 text-[16px] font-bold items-center">
           <img src={wallet} alt="wallet icon" width={20} />

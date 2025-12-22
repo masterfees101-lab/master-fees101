@@ -26,22 +26,28 @@ export default function Login() {
       return;
     }
 
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (authError) {
-      if (authError.message.includes("Invalid login credentials")) {
-        toast.error("Invalid email or password.");
+      if (authError) {
+        if (authError.message.includes("Invalid login credentials")) {
+          toast.error("Invalid email or password.");
+        } else {
+          toast.error(authError.message);
+        }
       } else {
-        toast.error(authError.message);
+        // Successful login - navigate to dashboardSelect
+        navigate("/dashboardSelect");
       }
-    } else {
-      // Successful login - navigate to dashboardSelect
-      navigate("/dashboardSelect");
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Unable to connect. Please check your internet connection.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

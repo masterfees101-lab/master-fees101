@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import Logo from "./Logo";
+import { useAuth } from "@/context/AuthContext";
+import { seedAllData, clearAllSeedData } from "@/services/supabase/seedData";
 import {
   HamburgerIcon,
   HomeIcon,
@@ -12,9 +15,33 @@ import {
   User2Icon,
   Wallet,
   Wand2Icon,
+  Database,
 } from "lucide-react";
 const iconSize = 18;
 function PageNavigation() {
+  const { user } = useAuth();
+  const [seeding, setSeeding] = useState(false);
+  const [clearing, setClearing] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  const handleSeed = async () => {
+    setSeeding(true);
+    setMessage(null);
+    const result = await seedAllData(user?.id);
+    setMessage(result);
+    setSeeding(false);
+    setTimeout(() => setMessage(null), 3000);
+  };
+
+  const handleClear = async () => {
+    setClearing(true);
+    setMessage(null);
+    const result = await clearAllSeedData();
+    setMessage(result);
+    setClearing(false);
+    setTimeout(() => setMessage(null), 3000);
+  };
+
   const navItems = [
     { name: "Homepage", path: "/main", icon: <HomeIcon size={iconSize} /> },
     {
@@ -102,8 +129,47 @@ function PageNavigation() {
         </nav>
       </div>
 
-      <div className="p-6 text-xs text-gray-400 text-center">
-        © All Rights Reserved 2025 <br /> Fee Master Ltd.
+      <div className="p-4 border-t border-gray-200">
+        {/* Seed Data Buttons */}
+        <div className="flex gap-2 mb-3">
+          <button
+            onClick={handleSeed}
+            disabled={seeding || clearing}
+            className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+              seeding
+                ? "bg-green-200 text-green-800 cursor-wait"
+                : "bg-green-500 text-white hover:bg-green-600"
+            }`}
+          >
+            <Database size={14} />
+            {seeding ? "Seeding..." : "Seed DB"}
+          </button>
+          <button
+            onClick={handleClear}
+            disabled={seeding || clearing}
+            className={`flex-1 flex items-center justify-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+              clearing
+                ? "bg-red-200 text-red-800 cursor-wait"
+                : "bg-red-500 text-white hover:bg-red-600"
+            }`}
+          >
+            {clearing ? "Clearing..." : "Clear DB"}
+          </button>
+        </div>
+        {message && (
+          <div
+            className={`text-xs p-2 rounded-lg mb-2 ${
+              message.success
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
+            {message.message}
+          </div>
+        )}
+        <div className="text-xs text-gray-400 text-center">
+          © All Rights Reserved 2025 <br /> Fee Master Ltd.
+        </div>
       </div>
     </div>
   );

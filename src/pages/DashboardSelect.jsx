@@ -18,9 +18,7 @@ export default function DashboardSelect() {
         </h3>
 
         <div className="shadow-inner border border-lime-text rounded-lg p-4 mb-12">
-          <h2 className="font-semibold">
-            Select Dashboard
-          </h2>
+          <h2 className="font-semibold">Select Dashboard</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-4">
             {dashboardContents.map((content, index) => (
               <DashboardCard
@@ -35,8 +33,8 @@ export default function DashboardSelect() {
       </div>
       <div className="fixed h-28 bottom-0 left-0 right-0">
         <Button
-          className="flex items-center justify-center font-semibold rounded-xl  
-        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed w-[340px] h-[47px] top-0 mx-auto bg-primary text-white"
+          className="flex text-black items-center justify-center font-semibold rounded-xl  
+        shadow-[0_3px_2px_rgba(0,0,0,0.6)] hover:shadow-[0_4px_4px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all duration-150 disabled:opacity-50 disabled:hover-none disabled:border-none disabled:cursor-not-allowed w-[340px] h-[47px] top-0 mx-auto bg-primary "
           onClick={() => navigate(selectedDashboard || "/dashboard")}
         >
           Proceed

@@ -14,7 +14,6 @@ export function AuthProvider({ children }) {
       setUser(session?.user ?? null);
       setLoading(false);
     });
-
     // Listen for auth changes
     const {
       data: { subscription },

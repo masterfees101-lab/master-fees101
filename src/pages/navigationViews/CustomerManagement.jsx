@@ -3,6 +3,8 @@ import DashboardHeading from "@components/ui/DashboardHeading";
 import { CustomerProvider, useCustomer } from "@/context/CustomerContext";
 import ImportCustomers from "@components/ui/ImportCustomers";
 import CustomerDetails from "@components/ui/CustomerDetails";
+import Spinner from "@/components/ui/Spinner";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 function CustomerContent() {
   const { view, clearView, customerId } = useCustomer();
@@ -19,11 +21,12 @@ function CustomerContent() {
           </button>
           <DashboardHeading />
         </div>
+
         <ImportCustomers />
       </div>
     );
   }
-
+  //To look at the student's details
   if (view === "details") {
     return (
       <div className="h-screen rounded-md overflow-hidden bg-white">

@@ -1,3 +1,4 @@
+import { supabase } from "@/services/supabase/client";
 import { createContext, useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -18,6 +19,8 @@ function CustomerProvider({ children }) {
   const clearView = () => {
     setSearchParams({});
   };
+
+  //Get parent based on student id
 
   return (
     <CustomerContext.Provider

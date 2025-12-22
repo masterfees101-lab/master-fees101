@@ -1,6 +1,5 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import AppRoutes from "@routes/AppRoutes";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { TOAST_DURATION } from "@utils/constants";
 import Dashboard from "@/pages/Dashboard";
@@ -12,34 +11,65 @@ import Tasks from "@/pages/navigationViews/Tasks";
 import Transactions from "@/pages/navigationViews/Transactions";
 import Wallet from "@/pages/navigationViews/Wallet";
 import { WalletProvider } from "./context/WalletContext";
+import { AuthProvider } from "./context/AuthProvider";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import CustomerSupport from "@/pages/navigationViews/CustomerSupport";
 import Settings from "@/pages/navigationViews/Settings";
 import PageNotFound from "@/pages/PageNotFound";
 import Integrations from "@/pages/navigationViews/Integrations";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+const queryClient = new QueryClient();
 function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
-        <WalletProvider>
-          <Routes>
-            <Route path="/" index element={<Login />} />
-            <Route path="/dashboardselect" element={<DashboardSelect />} />
-            <Route path="main" element={<Dashboard />}>
-              <Route index element={<HomePage />} />
-              <Route path="transactions" element={<Transactions />} />
-              <Route path="customers" element={<CustomerManagement />} />
-              <Route path="tasks" element={<Tasks />} />
-              <Route path="wallet" element={<Wallet />} />
-              <Route path="integrations" element={<Integrations />} />
-              <Route path="customer_support" element={<CustomerSupport />} />
-              <Route path="settings" element={<Settings />} />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </WalletProvider>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AuthProvider>
+            <WalletProvider>
+              <Routes>
+                <Route path="/" index element={<Login />} />
+                <Route
+                  path="/dashboardselect"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardSelect />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="main"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<HomePage />} />
+                  <Route path="transactions" element={<Transactions />} />
+                  <Route path="customers" element={<CustomerManagement />} />
+                  <Route path="tasks" element={<Tasks />} />
+                  <Route path="wallet" element={<Wallet />} />
+                  <Route path="integrations" element={<Integrations />} />
+                  <Route
+                    path="customer_support"
+                    element={<CustomerSupport />}
+                  />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </WalletProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
       <Toaster
         position="top-center"
         reverseOrder={false}

@@ -1,0 +1,80 @@
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Primary spinning ring with gradient */
+.spinner-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--lime-text);
+  border-right-color: var(--lime-bg);
+  animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  filter: drop-shadow(0 0 8px var(--lime-text));
+}
+
+/* Secondary ring for depth effect */
+.spinner-ring-2 {
+  border-width: 2px;
+  border-top-color: rgba(149, 227, 108, 0.3);
+  border-right-color: rgba(207, 242, 189, 0.2);
+  animation-duration: 1.5s;
+  animation-direction: reverse;
+  filter: none;
+  transform: scale(0.85);
+}
+
+/* Central glowing dot */
+.spinner-dot {
+  width: 20%;
+  height: 20%;
+  background: linear-gradient(135deg, var(--lime-text), var(--lime-bg));
+  border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--lime-text), 0 0 20px rgba(149, 227, 108, 0.5),
+    0 0 30px rgba(149, 227, 108, 0.3);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
