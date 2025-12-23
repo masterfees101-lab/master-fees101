@@ -8,6 +8,7 @@ function CustomerProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const view = searchParams.get("view");
   const customerId = searchParams.get("customerId");
+  const [expandedRow, setExpandedRow] = useState(null);
 
   // Helper to change view
   const setView = (newView, id = null) => {

@@ -8,7 +8,6 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 
 function CustomerContent() {
   const { view, clearView, customerId } = useCustomer();
-
   if (view === "import") {
     return (
       <div className="bg-white p-7 h-screen rounded-md overflow-auto hover:overflow-auto thin-scrollbar flex flex-col">
