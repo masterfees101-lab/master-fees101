@@ -18,7 +18,12 @@ function Spinner({ size = "md", label = "Loading...", fullScreen = false }) {
   };
 
   const spinner = (
-    <div className="spinner-container" role="status" aria-label={label}>
+    <div
+      className="spinner-container mx-auto
+ p-10"
+      role="status"
+      aria-label={label}
+    >
       <div className={`spinner ${sizeClasses[size]}`}>
         <div className="spinner-ring"></div>
         <div className="spinner-ring spinner-ring-2"></div>
@@ -30,7 +35,7 @@ function Spinner({ size = "md", label = "Loading...", fullScreen = false }) {
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--primary-color)]/80 backdrop-blur-sm">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#003630]/80 backdrop-blur-sm">
         {spinner}
       </div>
     );

@@ -1,21 +1,5 @@
 import React, { useState } from "react";
-import {
-  FilterIcon,
-  Plus,
-  PlusCircle,
-  Search,
-  SearchCheckIcon,
-  SortAscIcon,
-  SortDesc,
-  SortDescIcon,
-  UploadIcon,
-} from "lucide-react";
-import {
-  CUSTOMER_TABLE_MOCK_ROWS,
-  MOCK_CUSTOMER,
-  GRADE_TABS,
-} from "@utils/constants";
-import SortFilterSearch from "./SortFilterSearch";
+import { Plus, UploadIcon } from "lucide-react";
 import Tabs from "./Tabs";
 import { useCustomer } from "@/context/CustomerContext";
 import { ChevronDown, ChevronRight } from "lucide-react";
@@ -23,9 +7,12 @@ import { useGetStudents, useGetParentFromStudent } from "@/hooks/Students";
 import CustomerTableHead from "./CustomerTableHead";
 import PaginationBar from "../PaginationBar";
 import Spinner from "./Spinner";
+import CustomerSearch from "./CustomerSearch";
+import Modal from "./Modal";
+import EditStudentForm from "@/features/Students/EditStudentForm";
 
 export default function CustomersTable() {
-  const { setView } = useCustomer();
+  const { setView, searchQuery, sortOrder, activeTab } = useCustomer();
   //The expanded row is the row that is clicked. It will get the id of the student that is clicked.
   //If the expanded row and the student Id are NOT the same, it will show the expanded row for that particular student
   //if same, it will close the row
@@ -39,6 +26,31 @@ export default function CustomersTable() {
     error: studentsError,
   } = useGetStudents();
 
+  // Filter and Sort Students
+  const filteredStudents = students
+    ?.filter((student) => {
+      // Filter by Grade
+      if (activeTab !== "All" && student.grade !== activeTab) return false;
+
+      // Filter by Search Query
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const fullName =
+          `${student.first_name} ${student.last_name}`.toLowerCase();
+        const studentId = student.student_id.toLowerCase();
+        if (!fullName.includes(query) && !studentId.includes(query))
+          return false;
+      }
+
+      return true;
+    })
+    .sort((a, b) => {
+      const nameA = `${a.first_name} ${a.last_name}`.toLowerCase();
+      const nameB = `${b.first_name} ${b.last_name}`.toLowerCase();
+      if (sortOrder === "asc") return nameA.localeCompare(nameB);
+      return nameB.localeCompare(nameA);
+    });
+
   // Fetch parent when a row is expanded
   const {
     data: parent,
@@ -48,19 +60,9 @@ export default function CustomersTable() {
 
   return (
     <div className="p-6 w-full overflow-scroll thin-scrollbar">
-      <h1 className="text-2xl font-semibold mb-6">Customers</h1>
-
-      {/* Search + Actions */}
+      <h1 className="text-2xl font-semibold mb-6">Students</h1>
       <div className="flex items-center justify-between mb-4 ">
-        <div className="relative w-1/3">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search"
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:outline-none"
-          />
-        </div>
-
+        <CustomerSearch />
         <div className="flex gap-3">
           <button
             onClick={() => setView("import")}
@@ -72,28 +74,39 @@ export default function CustomersTable() {
             Import/Export
           </button>
 
-          <button className="px-4 py-2 gap-4 font-bold flex justify-between items-center bg-[#95E36C] text-[#003049] rounded-xl text-[12px]">
-            <span>
-              <Plus />
-            </span>
-            New User
-          </button>
+          <Modal>
+            <Modal.Open opens="new-Student">
+              <button className="px-4 py-2 gap-4 font-bold flex justify-between items-center bg-[#95E36C] text-[#003049] rounded-xl text-[12px]">
+                <span>
+                  <Plus />
+                </span>
+                New User
+              </button>
+            </Modal.Open>
+            <Modal.Window name="new-Student">
+              <EditStudentForm onCloseModal={close} />
+            </Modal.Window>
+          </Modal>
         </div>
       </div>
-
       {/* Tabs */}
       <Tabs />
-
       {/* Table */}
       <div className="border border-[#003630] rounded-md overflow-hidden max-h-[400px] overflow-y-auto hover:overflow-y-scroll thin-scrollbar">
         <table className="w-full text-sm">
           <CustomerTableHead />
           {isStudentsLoading && isParentLoading ? (
-            <Spinner />
+            <tbody>
+              <tr>
+                <td colSpan={7} className="text-center w-full">
+                  <Spinner size="xl" />
+                </td>
+              </tr>
+            </tbody>
           ) : (
             <tbody>
               {/* Showing students in the database */}
-              {students?.map((student, i) => (
+              {filteredStudents?.map((student, i) => (
                 <React.Fragment key={i}>
                   <tr
                     onClick={() =>
@@ -263,7 +276,6 @@ export default function CustomersTable() {
           )}
         </table>
       </div>
-
       {/* Pagination */}
       <PaginationBar />
     </div>

@@ -1,4 +1,3 @@
-import { supabase } from "@/services/supabase/client";
 import { createContext, useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -8,7 +7,11 @@ function CustomerProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const view = searchParams.get("view");
   const customerId = searchParams.get("customerId");
-  const [expandedRow, setExpandedRow] = useState(null);
+
+  // State for Search, Sort, and Filter
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc"); // 'asc' or 'desc'
+  const [activeTab, setActiveTab] = useState("All");
 
   // Helper to change view
   const setView = (newView, id = null) => {
@@ -21,8 +24,6 @@ function CustomerProvider({ children }) {
     setSearchParams({});
   };
 
-  //Get parent based on student id
-
   return (
     <CustomerContext.Provider
       value={{
@@ -32,6 +33,12 @@ function CustomerProvider({ children }) {
         setSearchParams,
         setView,
         clearView,
+        searchQuery,
+        setSearchQuery,
+        sortOrder,
+        setSortOrder,
+        activeTab,
+        setActiveTab,
       }}
     >
       {children}

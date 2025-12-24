@@ -40,7 +40,7 @@ export default function Login() {
         }
       } else {
         // Successful login - navigate to dashboardSelect
-        navigate("/dashboardSelect");
+        navigate("/main");
       }
     } catch (error) {
       console.error("Login error:", error);

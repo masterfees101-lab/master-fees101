@@ -11,6 +11,8 @@ import {
   useGetSpecificStudent,
 } from "../../hooks/Students";
 import Spinner from "./Spinner";
+import Modal from "./Modal";
+import EditStudentForm from "@/features/Students/EditStudentForm";
 export default function CustomerDetails({ customerId, onBack }) {
   const { data: fetchedStudent } = useGetSpecificStudent(customerId);
   const student = fetchedStudent?.[0];
@@ -19,7 +21,7 @@ export default function CustomerDetails({ customerId, onBack }) {
     isPending: isParentLoading,
     error: parentError,
   } = useGetParentFromStudent(customerId);
-  console.log(student);
+
   return (
     <div className="bg-white p-6 h-full overflow-y-auto thin-scrollbar">
       <div className="flex items-center gap-2 mb-6">
@@ -30,22 +32,6 @@ export default function CustomerDetails({ customerId, onBack }) {
       </div>
 
       <div className="flex gap-6 mb-8">
-        {/* Left Panel: Search */}
-        {/* <div className="w-1/4 min-w-[250px] border border-gray-200 rounded-lg p-4 h-fit">
-          <h3 className="text-sm font-semibold mb-2">
-            Search by name or Student ID
-          </h3>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-sm"
-            />
-          </div>
-        </div> */}
-
-        {/* Right Panel: Details and Transactions */}
         {student && parent ? (
           <div className="flex-1 border border-gray-200 rounded-lg p-6">
             <div className="flex justify-between items-start mb-8">
@@ -98,12 +84,31 @@ export default function CustomerDetails({ customerId, onBack }) {
 
               <div className="flex flex-col items-end gap-6">
                 <div className="flex gap-2">
-                  <button className="px-6 py-1 border border-gray-300 rounded-md text-sm font-semibold">
-                    Edit
-                  </button>
-                  <button className="px-6 py-1 bg-[#B6F09C] text-[#003630] rounded-md text-sm font-semibold">
-                    New
-                  </button>
+                  <Modal>
+                    <Modal.Open opens="edit-student">
+                      <button className="px-6 py-1 border border-gray-300 rounded-md text-sm font-semibold">
+                        Edit
+                      </button>
+                    </Modal.Open>
+                    <Modal.Window name="edit-student">
+                      <EditStudentForm
+                        student={student}
+                        onCloseModal={close}
+                        name="edit-student"
+                      />
+                    </Modal.Window>
+                    <Modal.Open opens="new-student">
+                      <button className="px-6 py-1 bg-[#B6F09C] text-[#003630] rounded-md text-sm font-semibold">
+                        New
+                      </button>
+                    </Modal.Open>
+                    <Modal.Window name="new-student">
+                      <EditStudentForm
+                        onCloseModal={close}
+                        name="new-student"
+                      />
+                    </Modal.Window>
+                  </Modal>
                 </div>
                 <div className="bg-[#E7F9DE] border border-[#003630] rounded-lg p-4 w-60 text-center">
                   <div className="mb-2">
